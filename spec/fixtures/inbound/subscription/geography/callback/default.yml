@@ -1,0 +1,24 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:3000/instagram/subscription/geography/callback
+    path: "/instagram/subscription/geography/callback"
+    query_string: ""
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"changed_aspect": "media", "object": "geography", "object_id": "12927815",
+        "time": 1439604298, "subscription_id": 19538940, "data": {}}]'
+    headers:
+      Host:
+      - localhost:3000
+      X-Hub-Signature:
+      - c3bf5b9a5286fa4831050df0e2581b034a7f945e
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Python-httplib2/0.8 (gzip)
+      Version:
+      - HTTP/1.1
+  recorded_at: '2015-08-14T22:05:12-04:00'
+recorded_with: Butterfli Rack Recorder

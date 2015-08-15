@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.instagram.com/v1/geographies/12927815/media/recent.json?min_id&client_id=client_id
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Instagram Ruby Gem 1.1.5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-ratelimit-remaining:
+      - '4994'
+      content-language:
+      - en
+      expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      vary:
+      - Cookie, Accept-Language, Accept-Encoding
+      x-ratelimit-limit:
+      - '5000'
+      pragma:
+      - no-cache
+      cache-control:
+      - private, no-cache, no-store, must-revalidate
+      date:
+      - Sat, 15 Aug 2015 02:09:07 GMT
+      content-type:
+      - application/json; charset=utf-8
+      set-cookie:
+      - csrftoken=323258bae9c2f6f3f379dd1d752818f9; expires=Sat, 13-Aug-2016 02:09:07
+        GMT; Max-Age=31449600; Path=/
+      connection:
+      - keep-alive
+      content-length:
+      - '1234'
+    body:
+      encoding: UTF-8
+      string: '{"pagination":{"next_min_id":"1051799522206299345_22630524"},"meta":{"code":200},"data":[{"attribution":null,"tags":["dadboner","freethebuns","wineoclock","powermoves","friday","coorslight"],"location":{"latitude":40.7494316,"name":"Beer
+        \u0026 Buns","longitude":-73.9778519,"id":247605489},"comments":{"count":1,"data":[{"created_time":"1439604429","text":"Thats
+        a sick 211 tat @cyndylouwho","from":{"username":"sharkmartin","profile_picture":"http:\/\/photos-f.ak.instagram.com\/hphotos-ak-xaf1\/t51.2885-19\/11335533_951602834879229_206064912_a.jpg","id":"8979886","full_name":"sharkmartin"},"id":"1051800645222807004"}]},"filter":"Rise","created_time":"1439604295","link":"https:\/\/instagram.com\/p\/6YvhfACDTR\/","likes":{"count":1,"data":[{"username":"sharkmartin","profile_picture":"http:\/\/photos-f.ak.instagram.com\/hphotos-ak-xaf1\/t51.2885-19\/11335533_951602834879229_206064912_a.jpg","id":"8979886","full_name":"sharkmartin"}]},"images":{"low_resolution":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/s320x320\/e35\/11348139_926738610719278_1398720487_n.jpg","width":320,"height":320},"thumbnail":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/s150x150\/e35\/11348139_926738610719278_1398720487_n.jpg","width":150,"height":150},"standard_resolution":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/s640x640\/sh0.08\/e35\/11348139_926738610719278_1398720487_n.jpg","width":640,"height":640}},"users_in_photo":[],"caption":{"created_time":"1439604295","text":"Happy
+        Friday y''all. #freethebuns #dadboner #powermoves #coorslight #friday #wineoclock","from":{"username":"juliajean11","profile_picture":"http:\/\/photos-g.ak.instagram.com\/hphotos-ak-xpa1\/t51.2885-19\/10731947_1455342861441078_1077838660_a.jpg","id":"22630524","full_name":"juliajean11"},"id":"1051799525486245251"},"type":"image","id":"1051799522206299345_22630524","user":{"username":"juliajean11","profile_picture":"http:\/\/photos-g.ak.instagram.com\/hphotos-ak-xpa1\/t51.2885-19\/10731947_1455342861441078_1077838660_a.jpg","id":"22630524","full_name":"juliajean11"}},{"attribution":null,"tags":[],"location":{"latitude":40.7478586,"longitude":-73.986969819},"comments":{"count":0,"data":[]},"filter":"Normal","created_time":"1439604217","link":"https:\/\/instagram.com\/p\/6YvX8gQwKk\/","likes":{"count":16,"data":[{"username":"huslegang_cito211","profile_picture":"http:\/\/images.ak.instagram.com\/profiles\/profile_219660961_75sq_1388657291.jpg","id":"219660961","full_name":"_TRUSNOTHOT"},{"username":"tgi_malli","profile_picture":"http:\/\/photos-g.ak.instagram.com\/hphotos-ak-xaf1\/t51.2885-19\/s150x150\/11821677_1654403021512590_513368394_a.jpg","id":"273885477","full_name":"Jamal"},{"username":"zdaii_","profile_picture":"http:\/\/photos-e.ak.instagram.com\/hphotos-ak-xfa1\/t51.2885-19\/s150x150\/11821181_1600538136878156_1166491299_a.jpg","id":"260623774","full_name":"\ud83c\udfea___________\ud83d\udeb6\ud83d\ude98"},{"username":"melostackz","profile_picture":"http:\/\/photos-f.ak.instagram.com\/hphotos-ak-xfa1\/t51.2885-19\/s150x150\/11351684_422914337909005_1491207562_a.jpg","id":"763081421","full_name":"QG\u2122
+        \ud83d\uddfd\ud83d\udc7c"}]},"images":{"low_resolution":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/s320x320\/e35\/11809636_1617370291848228_968345014_n.jpg","width":320,"height":320},"thumbnail":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/s150x150\/e35\/11809636_1617370291848228_968345014_n.jpg","width":150,"height":150},"standard_resolution":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/s640x640\/sh0.08\/e35\/11809636_1617370291848228_968345014_n.jpg","width":640,"height":640}},"users_in_photo":[],"caption":{"created_time":"1439604217","text":"Cheers\ud83c\udf79","from":{"username":"whiteeee.girl","profile_picture":"http:\/\/photos-b.ak.instagram.com\/hphotos-ak-xfa1\/t51.2885-19\/11330783_743376275772217_533650474_a.jpg","id":"1706439287","full_name":"G
+        L O\ud83c\udf3a"},"id":"1051798868402045821"},"type":"image","id":"1051798866690769572_1706439287","user":{"username":"whiteeee.girl","profile_picture":"http:\/\/photos-b.ak.instagram.com\/hphotos-ak-xfa1\/t51.2885-19\/11330783_743376275772217_533650474_a.jpg","id":"1706439287","full_name":"G
+        L O\ud83c\udf3a"}}]}'
+    http_version: 
+  recorded_at: Sat, 15 Aug 2015 02:09:08 GMT
+recorded_with: VCR 2.9.3

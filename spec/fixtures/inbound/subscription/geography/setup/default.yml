@@ -1,0 +1,21 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:3000/?hub.challenge=30f18cedbe3941ea9fd57967d8402922&hub.mode=subscribe
+    path: "/"
+    query_string: hub.challenge=30f18cedbe3941ea9fd57967d8402922&hub.mode=subscribe
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Host:
+      - localhost:3000
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Python-httplib2/0.8 (gzip)
+      Version:
+      - HTTP/1.1
+  recorded_at: '2015-08-14T15:31:00-04:00'
+recorded_with: Butterfli Rack Recorder
