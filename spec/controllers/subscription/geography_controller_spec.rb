@@ -18,11 +18,18 @@ RSpec.describe Butterfli::Instagram::Rails::Subscription::GeographyController, t
     end
   end
   describe "#callback" do
+    let(:target) { double("callback_target") }
+
+    before(:each) { Butterfli::Instagram.subscribe { |stories| target.share(stories) } }
+    after(:each) { Butterfli::Instagram.unsubscribe_all }
+
     context "when called with a typical Instagram callback request" do
       let(:req) { request_fixture("subscription/geography/callback/default") }
       subject { execute_fixtured_action(:callback, req) }
+
       it do
         VCR.use_cassette("subscription/geography/callback/default") do
+          expect(target).to receive(:share)
           expect(subject).to have_http_status(:ok)
           expect(JSON.parse(subject.body).length).to eq(2)
         end
