@@ -1,11 +1,14 @@
 # NOTE: We're overriding with Rails-specific behavior
 #       Doing this only for 1.9.3. Otherwise we'd prepend.
 module Butterfli::Instagram::Tasks
-  def self.configure
-    puts "** Loading Rails environment... **"
-    Rake::Task["environment"].invoke
-    Butterfli.configuration
-  end
+  include Butterfli::Rails::Tasks
+
+  engine Butterfli::Instagram::Rails::Engine
+  controller :geography, "Butterfli::Instagram::Rails::Subscription::GeographyController"
+
+  # NOTE: Must be forcefully overidden to use the Rails module...
+  def self.configure; super; end
+  def self.url_for(host, options = {}); super; end
 end
 
 # TODO: When we drop support for Ruby 1.9.3
