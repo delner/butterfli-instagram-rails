@@ -48,7 +48,7 @@ class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli
     end
 
     # Step #4: Notify Instagram subscribers
-    Butterfli::Instagram.syndicate(stories) if !stories.empty?
+    Butterfli.syndicate(stories) if !stories.empty?
 
     # Step #5: Render output
     respond_to do |format|

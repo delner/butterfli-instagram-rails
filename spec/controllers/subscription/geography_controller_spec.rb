@@ -20,8 +20,8 @@ RSpec.describe Butterfli::Instagram::Rails::Subscription::GeographyController, t
   describe "#callback" do
     let(:target) { double("callback_target") }
 
-    before(:each) { Butterfli::Instagram.subscribe { |stories| target.share(stories) } }
-    after(:each) { Butterfli::Instagram.unsubscribe_all }
+    before(:each) { Butterfli.subscribe { |stories| target.share(stories) } }
+    after(:each) { Butterfli.unsubscribe_all }
 
     context "when called with a typical Instagram callback request" do
       let(:req) { request_fixture("subscription/geography/callback/default") }
