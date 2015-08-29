@@ -57,25 +57,25 @@ Make sure its publicly accessible (most development servers are not), as Instagr
 
 Then setup the subscription with the rake task. The following is for [geography subscriptions](https://instagram.com/developer/realtime/):
 ```bash
-# Arguments: [callback_url, latitude, longitute, radius (in meters)]
-bundle exec rake butterfli:instagram:subscription:geography:setup['http://yourhost.com/butterfli/instagram/subscription/geography/callback',40.782956,-73.972106,5000]
+# Arguments: [callback_url_or_host, latitude, longitute, radius (in meters)]
+bundle exec rake butterfli:instagram:subscription:geography:setup['yourhost.com',40.782956,-73.972106,5000]
 ```
 
-If successful, Instagram will return a `200 OK` in the response. Your web server will now receive updates from Instagram until you unsubscribe. To do so, run the teardown rake task, which will remove all your subscriptions:
+You can provide either a URL to the callback, or just the hostname (which will auto-generate the URL from your application routes.) If setup is successful, Instagram will return a `200 OK` with an object ID in the response. Your web server will now receive updates from Instagram until you unsubscribe. To do so, run the teardown rake task, which will remove all your subscriptions:
 ```ruby
 bundle exec rake butterfli:instagram:subscription:teardown
 ```
 
 In your application, you can access stories using `#subscribe` to register an event handler:
 ```ruby
-Butterfli::Instagram.subscribe do |stories|
+Butterfli.subscribe to: :instagram do |stories|
   puts "I received #{stories.length} stories!"
 end
 ```
 
 The above block will be called when any kind of story is received from Instagram. You can also subscribe to specific types of stories, using `to:` (NOTE: Currently, for Instagram, the only supported type is `:image`)
 ```ruby
-Butterfli::Instagram.subscribe to: :image do |stories|
+Butterfli.subscribe to: :instagram, type: :image do |stories|
   puts "I received #{stories.length} image stories!"
 end
 ```
