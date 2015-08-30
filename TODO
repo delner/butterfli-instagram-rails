@@ -1,1 +1,2 @@
 1. Add test route to controllers (so developers can check their accessibility)
+2. Add 'install' rake task
