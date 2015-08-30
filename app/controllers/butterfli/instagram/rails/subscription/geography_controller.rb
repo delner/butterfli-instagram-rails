@@ -1,13 +1,4 @@
 class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli::Instagram::Rails::ApiController
-  def setup
-    response = client.meet_challenge(params) { |token| true }
-    respond_to do |format|
-      format.html { render text: response }
-      format.json { render text: response }
-      format.text { render text: response }
-    end
-  end
-
   def callback
     geo_object_id = nil
     media_objects = nil
