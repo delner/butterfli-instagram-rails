@@ -1,8 +1,4 @@
 class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli::Instagram::Rails::ApiController
-  layout nil
-  protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
-
-
   def setup
     response = client.meet_challenge(params) { |token| true }
     respond_to do |format|
@@ -51,6 +47,7 @@ class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli
       format.text { render text: "#{stories.to_json}" }
     end
   end
+
   private
   def subscriptions
     @@subscriptions ||= {}
