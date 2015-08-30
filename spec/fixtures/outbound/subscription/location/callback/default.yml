@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.instagram.com/v1/locations/254433809/media/recent.json?min_id&client_id=client_id
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Instagram Ruby Gem 1.1.5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-ratelimit-remaining:
+      - '4994'
+      content-language:
+      - en
+      expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      vary:
+      - Cookie, Accept-Language, Accept-Encoding
+      x-ratelimit-limit:
+      - '5000'
+      pragma:
+      - no-cache
+      cache-control:
+      - private, no-cache, no-store, must-revalidate
+      date:
+      - Sat, 15 Aug 2015 02:09:07 GMT
+      content-type:
+      - application/json; charset=utf-8
+      set-cookie:
+      - csrftoken=323258bae9c2f6f3f379dd1d752818f9; expires=Sat, 13-Aug-2016 02:09:07
+        GMT; Max-Age=31449600; Path=/
+      connection:
+      - keep-alive
+      content-length:
+      - '1234'
+    body:
+      encoding: UTF-8
+      string: '{"pagination":{"next_url":"https:\/\/api.instagram.com\/v1\/locations\/254433809\/media\/recent?max_id=995119922728364795\u0026client_id=f3fe014c5b9e4ef9982b94224a5083f4","next_max_id":"995119922728364795"},"meta":{"code":200},"data":[{"attribution":null,"tags":["centralpark"],"location":{"latitude":40.783055556,"name":"Central Park","longitude":-73.972222222,"id":254433809},"comments":{"count":0,"data":[]},"filter":"Normal","created_time":"1432856839","link":"https:\/\/instagram.com\/p\/3Ppxa7Jhzm\/","likes":{"count":73,"data":[{"username":"jiioohanna","profile_picture":"https:\/\/igcdn-photos-h-a.akamaihd.net\/hphotos-ak-xfp1\/t51.2885-19\/10808598_374620332702751_859404116_a.jpg","id":"1379990930","full_name":"Johanna"},{"username":"nesselias","profile_picture":"https:\/\/igcdn-photos-c-a.akamaihd.net\/hphotos-ak-xaf1\/t51.2885-19\/s150x150\/11849149_1136441666385930_687093798_a.jpg","id":"990856922","full_name":"vanessa"},{"username":"caltij","profile_picture":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-19\/11821293_1458279234497420_965456874_a.jpg","id":"1068198853","full_name":"Jo-Ann Caltabiano"},{"username":"_sahilverma","profile_picture":"https:\/\/igcdn-photos-a-a.akamaihd.net\/hphotos-ak-xaf1\/t51.2885-19\/11372434_121370084861088_569036911_a.jpg","id":"1543514582","full_name":""}]},"images":{"low_resolution":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xfa1\/t51.2885-15\/s320x320\/e15\/11376629_1650859051814506_1184904295_n.jpg","width":320,"height":320},"thumbnail":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xfa1\/t51.2885-15\/s150x150\/e15\/11376629_1650859051814506_1184904295_n.jpg","width":150,"height":150},"standard_resolution":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xfa1\/t51.2885-15\/e15\/11376629_1650859051814506_1184904295_n.jpg","width":640,"height":640}},"users_in_photo":[],"caption":{"created_time":"1432856839","text":"I could have spent all day in this place \ud83c\udf33 #centralpark","from":{"username":"danielcalti5","profile_picture":"https:\/\/igcdn-photos-g-a.akamaihd.net\/hphotos-ak-xfa1\/t51.2885-19\/11856755_923037117760838_1573941093_a.jpg","id":"22447438","full_name":"Daniel Caltabiano"},"id":"995197760940940994"},"type":"image","id":"995197758743125222_22447438","user":{"username":"danielcalti5","profile_picture":"https:\/\/igcdn-photos-g-a.akamaihd.net\/hphotos-ak-xfa1\/t51.2885-19\/11856755_923037117760838_1573941093_a.jpg","id":"22447438","full_name":"Daniel Caltabiano"}},{"attribution":null,"tags":["magnoliabakery","newyorkcity","bananapudding","nyskyline","centralpark","sexandthecity"],"location":{"latitude":40.783055556,"name":"Central Park","longitude":-73.972222222,"id":254433809},"comments":{"count":0,"data":[]},"filter":"Normal","created_time":"1432852318","link":"https:\/\/instagram.com\/p\/3PhJmYuc14\/","likes":{"count":17,"data":[{"username":"antonio.joao.matos","profile_picture":"https:\/\/igcdn-photos-e-a.akamaihd.net\/hphotos-ak-xap1\/t51.2885-19\/928068_314199648749884_322949807_a.jpg","id":"1457347368","full_name":"Jo\u00e3o Matos"},{"username":"angelicatibbling","profile_picture":"https:\/\/igcdn-photos-b-a.akamaihd.net\/hphotos-ak-xpf1\/t51.2885-19\/s150x150\/1389407_1017177538322769_242873003_a.jpg","id":"1466817488","full_name":"Ang\u00e9lica Tibbling"},{"username":"nacchan052","profile_picture":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-19\/s150x150\/11356963_1459874104321363_179042458_a.jpg","id":"888138066","full_name":"Natsuki Mochizuki"},{"username":"giovannicritti","profile_picture":"https:\/\/igcdn-photos-a-a.akamaihd.net\/hphotos-ak-xaf1\/t51.2885-19\/11906305_1242720472420720_664061536_a.jpg","id":"1094613341","full_name":"Giovanni Critti"}]},"images":{"low_resolution":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/s320x320\/e15\/11282289_805516492866197_635649947_n.jpg","width":320,"height":320},"thumbnail":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/s150x150\/e15\/11282289_805516492866197_635649947_n.jpg","width":150,"height":150},"standard_resolution":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/e15\/11282289_805516492866197_635649947_n.jpg","width":640,"height":640}},"users_in_photo":[],"caption":{"created_time":"1432852318","text":"Banana pudding from #magnoliabakery, so nhami!\n#bananapudding #sexandthecity #centralpark #newyorkcity #nyskyline","from":{"username":"claudiareginamatos","profile_picture":"https:\/\/scontent.cdninstagram.com\/hphotos-xfa1\/t51.2885-19\/s150x150\/11821301_1436788299983687_1466816470_a.jpg","id":"236208698","full_name":"claudiaregina"},"id":"995175178759163416"},"type":"image","id":"995159837899345272_236208698","user":{"username":"claudiareginamatos","profile_picture":"https:\/\/scontent.cdninstagram.com\/hphotos-xfa1\/t51.2885-19\/s150x150\/11821301_1436788299983687_1466816470_a.jpg","id":"236208698","full_name":"claudiaregina"}}]}'
+    http_version: 
+  recorded_at: Sat, 15 Aug 2015 02:09:08 GMT
+recorded_with: VCR 2.9.3
