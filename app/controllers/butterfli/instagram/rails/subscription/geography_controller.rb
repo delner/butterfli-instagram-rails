@@ -2,18 +2,8 @@ class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli
   layout nil
   protect_from_forgery unless: -> { request.format.json? }
 
-  # TODO: Make this support mutliple geographies
-  @@most_recent_id = nil
-
-  # For user-level authentication
-  # def oauth_callback
-  #   response = client.get_access_token(params[:code], :redirect_uri => instagram_oauth_callback_path)
-  #   session[:access_token] = response.access_token
-  # end
 
   def setup
-    # I'm an Instagram challenge authenticator
-    # puts "I got called with a realtime setup request!"
     response = client.meet_challenge(params) { |token| true }
     respond_to do |format|
       format.html { render text: response }
@@ -23,12 +13,14 @@ class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli
   end
 
   def callback
+    geo_object_id = nil
     media_objects = nil
 
     # Step #1: Callback to Instagram and retrieve the media metadata
     client.process_subscription(request.raw_post) do |handler|
-      handler.on_geography_changed do |geo_id, data|
-        media_objects = client.geography_recent_media(geo_id, min_id: @@most_recent_id)
+      handler.on_geography_changed do |id, data|
+        geo_object_id = id
+        media_objects = client.geography_recent_media(geo_object_id, min_id: subscriptions[geo_object_id])
       end
     end
     
@@ -44,7 +36,9 @@ class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli
       end
       
       # Step #3.1: Update the 'last seen photo ID', for 'pagination'
-      @@most_recent_id = media_objects.collect(&:id).max 
+      # NOTE: If we're receiving objects from multiple overlapping geographies,
+      #       it's entirely possible we'd be collecting duplicate stories...
+      subscriptions[geo_object_id] = media_objects.collect(&:id).max
     end
 
     # Step #4: Notify Instagram subscribers
@@ -56,5 +50,9 @@ class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli
       format.json { render text: "#{stories.to_json}" }
       format.text { render text: "#{stories.to_json}" }
     end
+  end
+  private
+  def subscriptions
+    @@subscriptions ||= {}
   end
 end
