@@ -4,6 +4,15 @@ class Butterfli::Instagram::Rails::ApiController < Butterfli::Controller
 
   before_action :is_signed?
 
+  def setup
+    response = client.meet_challenge(params) { |token| true }
+    respond_to do |format|
+      format.html { render text: response }
+      format.json { render text: response }
+      format.text { render text: response }
+    end
+  end
+
   protected
   def client
     @client ||= Butterfli.configuration.providers(:instagram).client

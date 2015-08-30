@@ -5,6 +5,10 @@ Butterfli::Instagram::Rails::Engine.routes.draw do
         get 'callback', to: '/butterfli/instagram/rails/subscription/geography#setup'
         post 'callback', to: '/butterfli/instagram/rails/subscription/geography#callback'
       end
+      namespace :location do
+        get 'callback', to: '/butterfli/instagram/rails/subscription/location#setup'
+        post 'callback', to: '/butterfli/instagram/rails/subscription/location#callback'
+      end
     end
   end
 end
