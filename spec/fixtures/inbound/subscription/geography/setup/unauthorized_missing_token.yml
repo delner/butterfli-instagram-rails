@@ -2,9 +2,9 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:3000/?hub.verify_token=verify_token&hub.challenge=30f18cedbe3941ea9fd57967d8402922&hub.mode=subscribe
+    uri: http://localhost:3000/?hub.challenge=30f18cedbe3941ea9fd57967d8402922&hub.mode=subscribe
     path: "/"
-    query_string: hub.verify_token=verify_token&hub.challenge=30f18cedbe3941ea9fd57967d8402922&hub.mode=subscribe
+    query_string: hub.challenge=30f18cedbe3941ea9fd57967d8402922&hub.mode=subscribe
     body:
       encoding: ASCII-8BIT
       string: ''

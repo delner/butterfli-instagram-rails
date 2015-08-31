@@ -12,8 +12,6 @@ http_interactions:
     headers:
       Host:
       - localhost:3000
-      X-Hub-Signature:
-      - dd99163a1b951b12473281beaf4d893004ab2712
       Accept-Encoding:
       - gzip, deflate
       User-Agent:

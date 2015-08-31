@@ -7,7 +7,7 @@ class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli
     client.process_subscription(request.raw_post) do |handler|
       handler.on_geography_changed do |id, data|
         geo_object_id = id
-        media_objects = client.geography_recent_media(geo_object_id, min_id: subscriptions[geo_object_id])
+        media_objects = client.geography_recent_media(geo_object_id, min_id: self.class.subscriptions[geo_object_id])
       end
     end
     
@@ -25,7 +25,7 @@ class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli
       # Step #3.1: Update the 'last seen photo ID', for 'pagination'
       # NOTE: If we're receiving objects from multiple overlapping geographies,
       #       it's entirely possible we'd be collecting duplicate stories...
-      subscriptions[geo_object_id] = media_objects.collect(&:id).max
+      self.class.subscriptions[geo_object_id] = media_objects.collect(&:id).max
     end
 
     # Step #4: Notify Instagram subscribers
@@ -37,10 +37,5 @@ class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli
       format.json { render text: "#{stories.to_json}" }
       format.text { render text: "#{stories.to_json}" }
     end
-  end
-
-  private
-  def subscriptions
-    @@subscriptions ||= {}
   end
 end

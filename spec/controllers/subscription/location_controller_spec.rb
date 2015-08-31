@@ -16,12 +16,24 @@ RSpec.describe Butterfli::Instagram::Rails::Subscription::LocationController, ty
         expect(subject.body).to eq(req['query_string']['hub.challenge'])
       end
     end
+    context "when called with an unauthorized setup request" do
+      # This request is missing the 'verify_token' parameter
+      let(:req) { request_fixture("subscription/location/setup/unauthorized_missing_token") }
+      subject { execute_fixtured_action(:setup, req) }
+      it do
+        expect(subject).to have_http_status(:unauthorized)
+        expect(JSON.parse(subject.body)['message']).to eq("Invalid token.")
+      end
+    end
   end
   describe "#callback" do
     let(:target) { double("callback_target") }
 
     before(:each) { Butterfli.subscribe { |stories| target.share(stories) } }
-    after(:each) { Butterfli.unsubscribe_all }
+    after(:each) do
+      Butterfli.unsubscribe_all
+      Butterfli::Instagram::Rails::Subscription::LocationController.subscriptions.clear
+    end
 
     context "when called with a typical Instagram callback request" do
       let(:req) { request_fixture("subscription/location/callback/default") }
@@ -32,6 +44,26 @@ RSpec.describe Butterfli::Instagram::Rails::Subscription::LocationController, ty
           expect(target).to receive(:share)
           expect(subject).to have_http_status(:ok)
           expect(JSON.parse(subject.body).length).to eq(2)
+        end
+      end
+    end
+    context "when called with an unauthorized callback request" do
+      context "missing a signature" do
+        let(:req) { request_fixture("subscription/location/callback/unauthorized_missing_signature") }
+        subject { execute_fixtured_action(:callback, req) }
+        it do
+          expect(target).to_not receive(:share)
+          expect(subject).to have_http_status(:unauthorized)
+          expect(JSON.parse(subject.body)['message']).to eq("Missing signature.")
+        end
+      end
+      context "with a bad signature" do
+        let(:req) { request_fixture("subscription/location/callback/unauthorized_bad_signature") }
+        subject { execute_fixtured_action(:callback, req) }
+        it do
+          expect(target).to_not receive(:share)
+          expect(subject).to have_http_status(:unauthorized)
+          expect(JSON.parse(subject.body)['message']).to eq("Invalid signature.")
         end
       end
     end

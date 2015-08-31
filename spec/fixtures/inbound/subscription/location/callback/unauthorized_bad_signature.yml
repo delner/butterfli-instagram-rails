@@ -13,7 +13,7 @@ http_interactions:
       Host:
       - localhost:3000
       X-Hub-Signature:
-      - dd99163a1b951b12473281beaf4d893004ab2712
+      - 6e0fdd8948d04697fd30f14f4208bd4638037b8c
       Accept-Encoding:
       - gzip, deflate
       User-Agent:

@@ -2,18 +2,16 @@
 http_interactions:
 - request:
     method: post
-    uri: http://localhost:3000/instagram/subscription/location/callback
-    path: "/instagram/subscription/location/callback"
+    uri: http://localhost:3000/instagram/subscription/geography/callback
+    path: "/instagram/subscription/geography/callback"
     query_string: ""
     body:
       encoding: ASCII-8BIT
-      string: '[{"changed_aspect": "media", "object": "location", "object_id": "254433809",
-        "time": 1439604298, "subscription_id": 19726930, "data": {}}]'
+      string: '[{"changed_aspect": "media", "object": "geography", "object_id": "12927815",
+        "time": 1439604298, "subscription_id": 19538940, "data": {}}]'
     headers:
       Host:
       - localhost:3000
-      X-Hub-Signature:
-      - dd99163a1b951b12473281beaf4d893004ab2712
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
