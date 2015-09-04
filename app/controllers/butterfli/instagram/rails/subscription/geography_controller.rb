@@ -1,4 +1,4 @@
-class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli::Instagram::Rails::ApiController
+class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli::Instagram::Rails::SubscriptionController
   def callback
     geo_object_id = nil
     media_objects = nil
