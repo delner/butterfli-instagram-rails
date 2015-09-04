@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.instagram.com/v1/tags/nyc/media/recent.json?min_id&client_id=client_id
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Instagram Ruby Gem 1.1.5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-ratelimit-remaining:
+      - '4994'
+      content-language:
+      - en
+      expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      vary:
+      - Cookie, Accept-Language, Accept-Encoding
+      x-ratelimit-limit:
+      - '5000'
+      pragma:
+      - no-cache
+      cache-control:
+      - private, no-cache, no-store, must-revalidate
+      date:
+      - Sat, 15 Aug 2015 02:09:07 GMT
+      content-type:
+      - application/json; charset=utf-8
+      set-cookie:
+      - csrftoken=323258bae9c2f6f3f379dd1d752818f9; expires=Sat, 13-Aug-2016 02:09:07
+        GMT; Max-Age=31449600; Path=/
+      connection:
+      - keep-alive
+      content-length:
+      - '1234'
+    body:
+      encoding: UTF-8
+      string: '{"pagination":{"next_max_tag_id":"1066933327186955361","deprecation_warning":"next_max_id and min_id are deprecated for this endpoint; use min_tag_id and max_tag_id instead","next_max_id":"1066933327186955361","next_min_id":"1066933534655105472","min_tag_id":"1066933534655105472","next_url":"https:\/\/api.instagram.com\/v1\/tags\/nyc\/media\/recent?client_id=f3fe014c5b9e4ef9982b94224a5083f4\u0026max_tag_id=1066933327186955361"},"meta":{"code":200},"data":[{"attribution":null,"tags":["nyc","grubbin","ny"],"location":null,"comments":{"count":0,"data":[]},"filter":"Sierra","created_time":"1441408409","link":"https:\/\/instagram.com\/p\/7OgmM-ncN9\/","likes":{"count":0,"data":[]},"images":{"low_resolution":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/s320x320\/e35\/11809758_544331475714926_1641285913_n.jpg","width":320,"height":320},"thumbnail":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/s150x150\/e35\/11809758_544331475714926_1641285913_n.jpg","width":150,"height":150},"standard_resolution":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xaf1\/t51.2885-15\/s640x640\/sh0.08\/e35\/11809758_544331475714926_1641285913_n.jpg","width":640,"height":640}},"users_in_photo":[],"caption":{"created_time":"1441408409","text":"Off guardd \ud83d\udcf7 ..\nThanks to baee \ud83d\ude11 smhh .. you dont wnna play that gamee @chay_lalinda \n#grubbin #nyc #ny","from":{"username":"speechlessswag","profile_picture":"https:\/\/igcdn-photos-e-a.akamaihd.net\/hphotos-ak-xaf1\/t51.2885-19\/s150x150\/11410464_605659719537324_1241421860_a.jpg","id":"19036903","full_name":"Swag Acevedo"},"id":"1066933531367555836"},"type":"image","id":"1066933524497286013_19036903","user":{"username":"speechlessswag","profile_picture":"https:\/\/igcdn-photos-e-a.akamaihd.net\/hphotos-ak-xaf1\/t51.2885-19\/s150x150\/11410464_605659719537324_1241421860_a.jpg","id":"19036903","full_name":"Swag Acevedo"}},{"attribution":null,"tags":["nyc","statueofliberty"],"location":{"latitude":40.689265147,"name":"Statue of Liberty National Monument","longitude":-74.044534373,"id":212911294},"comments":{"count":0,"data":[]},"filter":"Clarendon","created_time":"1441408408","link":"https:\/\/instagram.com\/p\/7OgmKxG_IK\/","likes":{"count":0,"data":[]},"images":{"low_resolution":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xfa1\/t51.2885-15\/s320x320\/e35\/11821721_977906262261912_1200158342_n.jpg","width":320,"height":320},"thumbnail":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xfa1\/t51.2885-15\/s150x150\/e35\/11821721_977906262261912_1200158342_n.jpg","width":150,"height":150},"standard_resolution":{"url":"https:\/\/scontent.cdninstagram.com\/hphotos-xfa1\/t51.2885-15\/s640x640\/sh0.08\/e35\/11821721_977906262261912_1200158342_n.jpg","width":640,"height":640}},"users_in_photo":[],"caption":{"created_time":"1441408408","text":"#nyc #statueofliberty","from":{"username":"lukassteff","profile_picture":"https:\/\/igcdn-photos-b-a.akamaihd.net\/hphotos-ak-xap1\/t51.2885-19\/s150x150\/928293_1188957967787833_549480954_a.jpg","id":"2159386787","full_name":""},"id":"1066933524052570923"},"type":"image","id":"1066933522123190794_2159386787","user":{"username":"lukassteff","profile_picture":"https:\/\/igcdn-photos-b-a.akamaihd.net\/hphotos-ak-xap1\/t51.2885-19\/s150x150\/928293_1188957967787833_549480954_a.jpg","id":"2159386787","full_name":""}}]}'
+    http_version: 
+  recorded_at: Sat, 15 Aug 2015 02:09:08 GMT
+recorded_with: VCR 2.9.3
