@@ -1,0 +1,22 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:3000/instagram/subscription/tag/callback
+    path: "/instagram/subscription/tag/callback"
+    query_string: ''
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"changed_aspect": "media", "object": "tag", "object_id": "nyc", "time":
+        1441406814, "subscription_id": 19787303, "data": {}}]'
+    headers:
+      Host:
+      - localhost:3000
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Python-httplib2/0.8 (gzip)
+      Version:
+      - HTTP/1.1
+  recorded_at: '2015-09-04T18:47:05-04:00'
+recorded_with: Butterfli Rack Recorder
