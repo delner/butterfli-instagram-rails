@@ -1,4 +1,4 @@
-class Butterfli::Instagram::Rails::ApiController < Butterfli::Controller
+class Butterfli::Instagram::Rails::ApiController < Butterfli::Rails::Controller
   layout nil
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
 
