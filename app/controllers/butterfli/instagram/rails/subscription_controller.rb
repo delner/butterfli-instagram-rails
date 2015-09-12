@@ -15,10 +15,6 @@ class Butterfli::Instagram::Rails::SubscriptionController < Butterfli::Instagram
     end
   end
 
-  def self.subscriptions
-    @subscriptions ||= {}
-  end
-
   private
   def validate_signature
     is_valid = client.validate_update(request.body.string, request.headers)

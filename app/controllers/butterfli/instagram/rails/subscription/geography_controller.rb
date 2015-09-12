@@ -1,41 +1,23 @@
 class Butterfli::Instagram::Rails::Subscription::GeographyController < Butterfli::Instagram::Rails::SubscriptionController
   def callback
-    geo_object_id = nil
-    media_objects = nil
-
     # Step #1: Callback to Instagram and retrieve the media metadata
     client.process_subscription(request.raw_post) do |handler|
       handler.on_geography_changed do |id, data|
-        geo_object_id = id
-        media_objects = client.geography_recent_media(geo_object_id, min_id: self.class.subscriptions[geo_object_id])
+        # Get last object ID from the cache:
+        # TODO: Create intermediate Instagram cache layer to centralize cache key management
+        min_id = Butterfli.cache.read("Instagram:Subscription:Geography:#{id}:MaxObjectId")
+        job = Butterfli::Instagram::Jobs::GeographyRecentMedia.new(obj_id: id, min_id: min_id)
+
+        # If processor is available, queue the job. Otherwise run in synchronously (slow)
+        Butterfli.processor ? Butterfli.processor.enqueue(job) : job.work
       end
     end
-    
-    # Step #2: Filter images to uniques
-    media_objects = media_objects.uniq { |item| item['id'] }
 
-    stories = []
-    if !media_objects.empty?
-      # Step #3: Transform image metadata using Butterfli
-      media_objects.each do |media_object|
-        story = Butterfli::Instagram::Data::MediaObject.new(media_object).transform
-        stories << story if story
-      end
-      
-      # Step #3.1: Update the 'last seen photo ID', for 'pagination'
-      # NOTE: If we're receiving objects from multiple overlapping geographies,
-      #       it's entirely possible we'd be collecting duplicate stories...
-      self.class.subscriptions[geo_object_id] = media_objects.collect(&:id).max
-    end
-
-    # Step #4: Notify Instagram subscribers
-    Butterfli.syndicate(stories) if !stories.empty?
-
-    # Step #5: Render output
+    # Step #2: Render output
     respond_to do |format|
-      format.html { render text: "#{stories.to_json}" }
-      format.json { render text: "#{stories.to_json}" }
-      format.text { render text: "#{stories.to_json}" }
+      format.html { render text: "" }
+      format.json { render text: "" }
+      format.text { render text: "" }
     end
   end
 end

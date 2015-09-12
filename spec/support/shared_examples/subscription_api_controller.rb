@@ -26,7 +26,6 @@ RSpec.shared_examples "an Instagram subscription controller" do |controller_clas
     before(:each) { Butterfli.subscribe { |stories| target.share(stories) } }
     after(:each) do
       Butterfli.unsubscribe_all
-      controller_class.subscriptions.clear
     end
 
     context "when called with a typical Instagram callback request" do
@@ -36,7 +35,7 @@ RSpec.shared_examples "an Instagram subscription controller" do |controller_clas
         VCR.use_cassette("subscription/#{short_name}/callback/default") do
           expect(target).to receive(:share)
           expect(subject).to have_http_status(:ok)
-          expect(JSON.parse(subject.body).length).to eq(2)
+          expect(subject.body).to be_empty
         end
       end
     end

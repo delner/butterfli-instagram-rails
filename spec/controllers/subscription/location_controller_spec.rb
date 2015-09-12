@@ -4,7 +4,10 @@ RSpec.describe Butterfli::Instagram::Rails::Subscription::LocationController, ty
   routes { Butterfli::Instagram::Rails::Engine.routes }
 
   # Configure the Instagram client...
-  before { configure_for_instagram }
+  before do
+    configure_for_instagram
+    Butterfli.configuration.writer :syndicate
+  end
 
   # Default examples
   it_behaves_like "an Instagram subscription controller", Butterfli::Instagram::Rails::Subscription::LocationController, "location"
