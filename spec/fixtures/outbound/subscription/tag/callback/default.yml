@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.instagram.com/v1/tags/nyc/media/recent.json?min_id&client_id=client_id
+    uri: https://api.instagram.com/v1/tags/nyc/media/recent.json?min_tag_id&client_id=client_id
     body:
       encoding: US-ASCII
       string: ''

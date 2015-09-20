@@ -1,5 +1,10 @@
 # For testing realtime APIs
 RSpec.shared_examples "an Instagram subscription controller" do |controller_class, short_name|
+  # Configure the Instagram client...
+  before do
+    configure_for_instagram
+    Butterfli.configuration.writer :syndicate
+  end
   # Define expected behaviors for each endpoint:
   describe "#setup" do
     context "when called with a typical Instagram setup request" do
@@ -26,16 +31,80 @@ RSpec.shared_examples "an Instagram subscription controller" do |controller_clas
     before(:each) { Butterfli.subscribe { |stories| target.share(stories) } }
     after(:each) do
       Butterfli.unsubscribe_all
+      Butterfli.cache.clear
     end
 
     context "when called with a typical Instagram callback request" do
-      let(:req) { request_fixture("subscription/#{short_name}/callback/default") }
-      subject { execute_fixtured_action(:callback, req) }
-      it do
-        VCR.use_cassette("subscription/#{short_name}/callback/default") do
-          expect(target).to receive(:share)
-          expect(subject).to have_http_status(:ok)
-          expect(subject.body).to be_empty
+      context "while configured for synchronous processing" do
+        let(:req) { request_fixture("subscription/#{short_name}/callback/default") }
+        subject { execute_fixtured_action(:callback, req) }
+        it do
+          VCR.use_cassette("subscription/#{short_name}/callback/default") do
+            expect(target).to receive(:share)
+            expect(subject).to have_http_status(:ok)
+            expect(subject.body).to be_empty
+          end
+        end
+      end
+      context "while configured for asynchronous processing" do
+        before do
+          configure_for_instagram
+          Butterfli.configuration.writer :syndicate
+          Butterfli.configuration.processor :monolith
+        end
+        let(:processor) { double('processor') }
+        let(:req) { request_fixture("subscription/#{short_name}/callback/default") }
+        subject { execute_fixtured_action(:callback, req) }
+        before(:each) do
+          # Sanity check that we aren't changing the argument list with our stub
+          expect(Butterfli::Processing::Processor.new(nil)).to respond_to(:enqueue).with(2).arguments
+          allow(processor).to receive(:enqueue)
+          Butterfli.processor = processor
+        end
+        after(:each) { Butterfli.processor = nil }
+        it do
+          VCR.use_cassette("subscription/#{short_name}/callback/default") do
+            expect(processor).to receive(:enqueue).with(:stories, Butterfli::Instagram::Job)
+            expect(subject).to have_http_status(:ok)
+            expect(subject.body).to be_empty
+          end
+        end
+      end
+      context "while configured with a jobs policy" do
+        before(:each) do
+          configure_for_instagram do |provider|
+            provider.policy :jobs do |jobs|
+              jobs.throttle short_name.to_sym do |t|
+                t.matching obj_id: obj_id
+                t.limit 1
+                t.per_seconds 60
+              end
+            end
+          end
+          Butterfli.configuration.writer :syndicate
+        end
+        after(:each) { Butterfli::Instagram::Regulation.policies = nil }
+        let(:req) { request_fixture("subscription/#{short_name}/callback/default") }
+        let(:obj_id) { JSON.parse(req['body']['string']).first['object_id'] }
+        subject { execute_fixtured_action(:callback, req) }
+        context "which permits the job" do
+          it do
+            VCR.use_cassette("subscription/#{short_name}/callback/default") do
+              expect(target).to receive(:share)
+              expect(subject).to have_http_status(:ok)
+              expect(subject.body).to be_empty
+            end
+          end
+        end
+        context "which doesn't permit the job" do
+          before(:each) { Butterfli::Instagram::Data::Cache.for.subscription(short_name.to_sym, obj_id).field(:last_time_queued).write(Time.now - 30) }
+          it do
+            VCR.use_cassette("subscription/#{short_name}/callback/default") do
+              expect(target).to_not receive(:share)
+              expect(subject).to have_http_status(:ok)
+              expect(subject.body).to be_empty
+            end
+          end
         end
       end
     end
