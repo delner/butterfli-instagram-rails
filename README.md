@@ -30,6 +30,8 @@ Butterfli.configure do |config|
   config.provider :instagram do |provider|
     provider.client_id = "Your client ID"
     provider.client_secret = "Your client secret"
+    # For verifying setup requests from Instagram
+    provider.verify_token = "A secret key" 
   end
 end
 ```
