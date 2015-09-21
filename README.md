@@ -44,7 +44,7 @@ end
 
 ### Usage
 
-#### Receiving realtime subscription data from Instagram
+#### Subscribing to real-time updates from Instagram
 
 In order to receive realtime data from Instagram, you must 'subscribe' by authenticating with their API. You can do this by running a rake task included within this gem.
 
@@ -61,12 +61,23 @@ Then setup the subscription with the rake task. The following is for [geography 
 bundle exec rake butterfli:instagram:subscription:geography:setup['yourhost.com',40.782956,-73.972106,5000]
 ```
 
-You can provide either a URL to the callback, or just the hostname (which will auto-generate the URL from your application routes.) If setup is successful, Instagram will return a `200 OK` with an object ID in the response. Your web server will now receive updates from Instagram until you unsubscribe. To do so, run the teardown rake task, which will remove all your subscriptions:
+You can provide either a URL to the callback, or just the hostname (which will auto-generate the callback URL from your application routes.) If setup is successful, Instagram will return a `200 OK` with an object ID in the response. (Your web server will now receive updates from Instagram until you unsubscribe.)
+
+#### Receiving stories from subscriptions
+
+When Instagram calls your web server, any new images will be automatically retrieved and converted into stories. Butterfli will then write those stories to any endpoints you've configured, via *writers*. (See the [`butterfli`](https://github.com/delner/butterfli) documentation for more details about writers.)
+
+##### Via 'syndicate'
+
+Butterfli can write stories directly to event handlers in your application. Add the following to your Butterfli configuration:
+
 ```ruby
-bundle exec rake butterfli:instagram:subscription:teardown
+Butterfli.configure do |config|
+  config.writer :syndicate
+end
 ```
 
-In your application, you can access stories using `#subscribe` to register an event handler:
+Then in your application, you can access stories using `#subscribe` to register an event handler:
 ```ruby
 Butterfli.subscribe to: :instagram do |stories|
   puts "I received #{stories.length} stories!"
@@ -78,6 +89,13 @@ The above block will be called when any kind of story is received from Instagram
 Butterfli.subscribe to: :instagram, type: :image do |stories|
   puts "I received #{stories.length} image stories!"
 end
+```
+
+##### Unsubscribing from real-time updates from Instagram
+
+To do so, run the teardown rake task, which will remove all your subscriptions:
+```ruby
+bundle exec rake butterfli:instagram:subscription:teardown
 ```
 
 ### Changelog
