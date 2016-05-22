@@ -3,7 +3,7 @@ Instagram (for Rails)
 ==========
 
 [![Build Status](https://travis-ci.org/delner/butterfli-instagram-rails.svg?branch=master)](https://travis-ci.org/delner/butterfli-instagram-rails) ![Gem Version](https://img.shields.io/gem/v/butterfli-instagram-rails.svg?maxAge=2592000)
-###### *For Ruby 1.9.3, 2.0.0, 2.1.0*
+###### *For Ruby 2+*
 
 ### Introduction
 
